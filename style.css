@@ -364,13 +364,12 @@ COURSE CARD
 HEADINGS
 ================================================= */
 .special-heading {
-  font-size: 100px;
+  font-size: 70px;
   text-align: center;
   font-weight: 800;
   letter-spacing: -3px;
   color: #a5d1bd57;
 }
-
 .special-heading+p {
   margin-top: -41px;
   font-size: 20px;
