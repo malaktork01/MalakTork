@@ -1,0 +1,247 @@
+ @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+
+        :root {
+            --primary: #00bfa6;
+            --secondary: #2f6db3;
+            --bg-main: #080a0c;
+            --glass: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(255, 255, 255, 0.07);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Cairo', sans-serif;
+            background: radial-gradient(circle at top right, #0d1217, #080a0c);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+        }
+
+        .admin-panel {
+            width: 100%;
+            max-width: 900px;
+            background: var(--glass);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            padding: 50px;
+            border-radius: 40px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
+        }
+
+        .panel-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 38px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .panel-header p {
+            color: #666;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.01);
+            padding: 30px;
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            color: white;
+            outline: none;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.3s;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(0, 191, 166, 0.15);
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .btn {
+            padding: 16px 30px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 700;
+            font-family: 'Cairo', sans-serif;
+            transition: 0.4s;
+        }
+
+        .btn-add {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: #fff;
+            width: 100%;
+            font-size: 17px;
+        }
+
+        /* تنسيق جدول الأكواد الجديد */
+        .codes-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .codes-table th {
+            color: var(--primary);
+            text-align: right;
+            font-size: 13px;
+            padding: 10px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .codes-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .small-input {
+            padding: 8px !important;
+            font-size: 12px !important;
+            width: 100px !important;
+        }
+
+        .btn-save-sm {
+            padding: 8px 15px;
+            font-size: 12px;
+            background: var(--primary);
+            color: #000;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+
+        .video-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tag {
+            font-size: 10px;
+            background: rgba(0, 191, 166, 0.1);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .view-site-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* شاشة الدخول */
+        #login-screen {
+            text-align: center;
+            max-width: 450px;
+            margin: 100px auto;
+        }
+
+        .lock-icon {
+            font-size: 50px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .main-input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 191, 166, 0.3); /* اللون الأخضر اللي في اللوجو */
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-family: 'Cairo', sans-serif;
+    outline: none;
+    cursor: pointer;
+    appearance: none; /* لإلغاء شكل السهم الافتراضي الممل */
+}
+
+/* تنسيق الخيارات عند فتح القائمة */
+select option {
+    background-color: #1a1d21; /* لون غامق يليق بالثيم */
+    color: #fff;
+    padding: 10px;
+}
+textarea {
+            width: 100%;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            color: white;
+            outline: none;
+            font-family: 'Cairo', sans-serif;
+            resize: none;
+        }
+        .manage-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            padding: 15px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .manage-card img {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-left: 15px;
+        }

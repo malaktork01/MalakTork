@@ -1,0 +1,438 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
+    <title>تعلم تطوير المواقع | استكشاف الإنترنت والمواقع</title>
+
+    <!-- SEO Meta -->
+    <meta name="description"
+        content="ابدأ رحلتك في تعلم تطوير المواقع وفهم الإنترنت من الصفر، من الدومين وURL لحد Front-End وBack-End وFull-Stack بطريقة سهلة وعملية.">
+    <meta name="keywords"
+        content="تعلم الإنترنت, المواقع الإلكترونية, الدومين, URL, تطوير المواقع, Front-End, Back-End, Full-Stack, HTML, CSS, JavaScript">
+    <meta name="author" content="ملك ترك">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://malak-tork.com/lecture1">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="استكشاف الإنترنت والمواقع | تعلم تطوير المواقع">
+    <meta property="og:description"
+        content="رحلة تعلم الإنترنت والمواقع الإلكترونية من البداية حتى الفهم العملي للمطورين Front-End وBack-End وFull-Stack.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://malak-tork.com/lecture1">
+    <meta property="og:image" content="https://malak-tork.com/images/cover.jpg">
+    <meta property="og:site_name" content="Malak Tork">
+    <meta property="og:locale" content="ar_AR">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="استكشاف الإنترنت والمواقع">
+    <meta name="twitter:description" content="تعلم الإنترنت والمواقع من البداية حتى الاحتراف">
+    <meta name="twitter:image" content="https://malak-tork.com/images/cover.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../css/lectures.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/lect1.css">
+</head>
+
+<body>
+    <div class="bg"></div>
+    <div id="header"></div>
+
+    <main class="container">
+        <button id="sidebar-toggle"><i class="fa-solid fa-bars">محاور المحاضرة</i></button>
+
+        <!-- الشريط الجانبي -->
+        <div class="visual-nav">
+            <a href="#internet" class="active"><i class="fa-solid fa-globe"></i> كيف يعمل الإنترنت</a>
+            <a href="#browser"><i class="fa-solid fa-window-maximize"></i> المتصفح ومحرك البحث</a>
+            <a href="#website"><i class="fa-solid fa-sitemap"></i> الموقع و الـ URL</a>
+            <a href="#journey"><i class="fa-solid fa-road"></i> رحلة بناء الموقع</a>
+            <a href="#roadmap"><i class="fa-solid fa-map"></i> Roadmap</a>
+            <a href="#challenges">
+                <i class="fa-solid fa-flag-checkered"></i> التحديات
+            </a>
+        </div>
+
+
+        <div class="site-header">
+            <h1>تعلم HTML و بناء المواقع</h1>
+            <p class="site-subtitle">رحلتك من الفكرة إلى موقع حقيقي خطوة بخطوة</p>
+        </div>
+
+        <section id="learn" class="learn">
+            <!-- الإنترنت -->
+            <article id="internet">
+                <header class="internet-header">
+                    <h2>كيف يعمل الإنترنت؟</h2>
+                    <p class="subtitle">المبدأ اللي العالم كله ماشي عليه</p>
+                </header>
+
+                <div class="network-visual">
+                    <div class="node user">
+                        <div class="icon" aria-hidden="true">👤</div>
+                        <span>المستخدم</span>
+                    </div>
+
+                    <div class="flow">
+                        <div class="request">
+                            Request →<small>طلب صفحة / بيانات</small>
+                        </div>
+                        <div class="line"></div>
+                        <div class="response">
+                            ← Response<small>HTML / صور / بيانات</small>
+                        </div>
+                    </div>
+
+                    <div class="node server">
+                        <div class="icon" aria-hidden="true">🖥️</div>
+                        <span>Server</span>
+                    </div>
+                </div>
+
+                <p class="note">
+                    أي موقع بتفتحه = طلب<br>واللي بيرجعلك = استجابة
+                </p>
+
+                <p class="mindset-line">
+                    كل ده بيحصل في أجزاء من الثانية… آلاف المرات كل دقيقة.
+                </p>
+            </article>
+
+            <!-- المتصفح و محرك البحث -->
+            <article id="browser">
+                <header class="section-header">
+                    <h2>متصفح ولا محرك بحث؟</h2>
+                </header>
+
+                <div class="compare-wrapper">
+                    <div class="compare-card browser">
+                        <div class="icon" aria-hidden="true">🌐</div>
+                        <h4>المتصفح</h4>
+                        <p class="desc">برنامج بيعرض المواقع ويفهم HTML و CSS</p>
+                        <ul>
+                            <li>Chrome</li>
+                            <li>Edge</li>
+                            <li>Firefox</li>
+                        </ul>
+                        <span class="role">أداة تشغيل</span>
+                    </div>
+
+                    <div class="vs">VS</div>
+
+                    <div class="compare-card search">
+                        <div class="icon" aria-hidden="true">🔍</div>
+                        <h4>محرك البحث</h4>
+                        <p class="desc">موقع بيساعدك تلاقي مواقع تانية</p>
+                        <ul>
+                            <li>Google</li>
+                            <li>Bing</li>
+                        </ul>
+                        <span class="role">أداة بحث</span>
+                    </div>
+                </div>
+
+                <p class="note">
+                    💡 من غير متصفح مش هتشوف الإنترنت ومن غير محرك بحث هتتعب تلاقيه
+                </p>
+            </article>
+
+            <!-- الموقع الإلكتروني -->
+            <article id="website">
+                <header class="section-header">
+                    <h2>ما هو الموقع الإلكتروني؟</h2>
+                    <p class="subtitle">ثم كيف نصل إليه باستخدام Domain و URL</p>
+                </header>
+
+                <div class="identity-grid">
+                    <div class="identity-card main">
+                        <h4>🌐 الموقع الإلكتروني</h4>
+                        <p>الموقع الإلكتروني هو مساحة رقمية على الإنترنت بتتكوّن من صفحات مترابطة وبتقدّم محتوى أو خدمة
+                            للمستخدم.</p>
+                        <div class="analogy">
+                            <strong>تخيّلها كده 👇</strong><br>
+                            الموقع = بيت<br>
+                            الصفحات = أوض<br>
+                            الزائر = شخص داخل البيت
+                        </div>
+                    </div>
+
+                    <div class="identity-card">
+                        <h4>🧱 بيتكوّن من إيه؟</h4>
+                        <ul>
+                            <li>صفحات (Pages)</li>
+                            <li>روابط (Links)</li>
+                            <li>محتوى (نص – صور – فيديو)</li>
+                            <li>أحيانًا بيانات (Users / Products)</li>
+                        </ul>
+                    </div>
+
+                    <div class="identity-card center">
+                        <div class="globe" aria-hidden="true">🌍</div>
+                        <h4>Website</h4>
+                        <p>الموقع الإلكتروني هو مكانك على الإنترنت زي محل أو مكتب… لكن أونلاين</p>
+                    </div>
+                </div>
+
+                <p class="mini-intro">طيب لو الموقع مكان… الناس بتوصله إزاي؟</p>
+
+                <!-- URL Section -->
+                <div class="url-section">
+                    <h4>عنوان الموقع (URL)</h4>
+                    <div class="url-visual">
+                        <span class="protocol">https://</span>
+                        <span class="domain">mindcode</span>
+                        <span class="tld">.com</span>
+                        <span class="path">/courses/web</span>
+                    </div>
+
+                    <div class="url-info">
+                        <div><strong>Protocol</strong><span>طريقة الاتصال</span></div>
+                        <div><strong>Domain</strong><span>اسم الموقع</span></div>
+                        <div><strong>TLD</strong><span>نوع النطاق</span></div>
+                        <div><strong>Path</strong><span>مكان الصفحة</span></div>
+                    </div>
+
+                    <div class="compare-note">
+                        <strong>Domain:</strong> google.com = اسم<br>
+                        <strong>URL:</strong> https://www.google.com = العنوان الكامل
+                    </div>
+
+                    <p class="note">💡 من غير Domain موقعك موجود… لكن محدش يوصله</p>
+                </div>
+            </article>
+
+            <!-- رحلة الموقع -->
+            <article id="journey">
+                <header class="section-header">
+                    <h2>من الفكرة إلى موقع حقيقي</h2>
+                    <p class="subtitle">أي موقع في العالم بيمر بنفس الرحلة دي</p>
+                </header>
+
+                <div class="journey-timeline">
+                    <div class="journey-step">
+                        <div class="step-icon" aria-hidden="true">💡</div>
+                        <h4>الفكرة</h4>
+                        <p>ليه الموقع ده موجود؟ تعليم – براند – خدمة – متجر</p>
+                    </div>
+                    <div class="arrow">➜</div>
+                    <div class="journey-step">
+                        <div class="step-icon" aria-hidden="true">📝</div>
+                        <h4>التخطيط</h4>
+                        <p>الصفحات – المحتوى – المستخدم قبل أي تصميم</p>
+                    </div>
+                    <div class="arrow">➜</div>
+                    <div class="journey-step">
+                        <div class="step-icon" aria-hidden="true">🎨</div>
+                        <h4>التصميم (UX / UI)</h4>
+                        <p>UX: إحساس المستخدم UI: الشكل والألوان</p>
+                    </div>
+                    <div class="arrow highlight-arrow">➜</div>
+                    <div class="journey-step highlight">
+                        <div class="step-icon" aria-hidden="true">💻</div>
+                        <h4>البرمجة</h4>
+                        <p>هنا الموقع بيتبني فعليًا ودي رحلتنا</p>
+                        <div class="tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="arrow">➜</div>
+                    <div class="journey-step">
+                        <div class="step-icon" aria-hidden="true">🚀</div>
+                        <h4>الإطلاق والتطوير</h4>
+                        <p>الموقع ينزل ويتحسن مع الوقت</p>
+                    </div>
+                </div>
+
+                <p class="journey-note">
+                    💡 كل مطور مواقع عالمي بدأ من هنا… <strong> HTML من</strong>
+                </p>
+            </article>
+
+
+        </section>
+        <section class="roles-section">
+            <h2 class="section-title">
+                <i class="fa-solid fa-users-gear"></i>
+                مين بيبني الموقع؟
+            </h2>
+            <p class="section-subtitle">
+                كل موقع ناجح وراه فريق متكامل
+            </p>
+
+            <div class="roles-grid">
+
+                <div class="role-card frontend">
+                    <div class="role-icon">🎨</div>
+                    <h3>Front-End Developer</h3>
+                    <p class="role-desc">
+                        مسؤول عن شكل الموقع
+                        كل اللي المستخدم بيشوفه ويتفاعل معاه
+                    </p>
+                    <ul>
+                        <li>تصميم الواجهات</li>
+                        <li>تحويل التصميم لكود</li>
+                        <li>تجربة مستخدم مريحة</li>
+                    </ul>
+                </div>
+
+                <div class="role-card backend">
+                    <div class="role-icon">⚙️</div>
+                    <h3>Back-End Developer</h3>
+                    <p class="role-desc">
+                        عقل الموقع
+                        اللي بيشتغل في الخفاء
+                    </p>
+                    <ul>
+                        <li>قواعد البيانات</li>
+                        <li>المنطق والعمليات</li>
+                        <li>الأمان والسرعة</li>
+                    </ul>
+                </div>
+
+                <div class="role-card fullstack">
+                    <div class="role-icon">🧠</div>
+                    <h3>Full Stack Developer</h3>
+                    <p class="role-desc">
+                        بيجمع بين الاثنين
+                        رؤية شاملة للموقع
+                    </p>
+                    <ul>
+                        <li>Front + Back</li>
+                        <li>تنفيذ الفكرة كاملة</li>
+                        <li>مناسب للمشاريع الصغيرة</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="roles-note">
+                💡 مفيش اختيار صح أو غلط
+                <br>
+                فيه اختيار مناسب ليك
+            </div>
+            <section id="roadmap">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    Roadmap تطوير المواقع
+                </h2>
+                <p class="section-subtitle">
+                    من أول فهم الإنترنت… لحد بناء مشاريع حقيقية
+                </p>
+
+                <!-- المرحلة الأولى: الأساس المشترك -->
+                <div class="roadmap-block">
+                    <h3 class="block-title">🟢 المرحلة الأولى: الأساس المشترك</h3>
+                    <div class="road-steps">
+                        <div class="road-step">
+                            <span>01</span>
+                            <h4>فهم الويب</h4>
+                            <p>الإنترنت – المواقع – المتصفح – السيرفر</p>
+                        </div>
+                        <div class="arrow">↓</div>
+                        <div class="road-step">
+                            <span>02</span>
+                            <h4>HTML</h4>
+                            <p>هيكل الموقع – أول لغة يفهمها المتصفح</p>
+                        </div>
+                        <div class="arrow">↓</div>
+                        <div class="road-step">
+                            <span>03</span>
+                            <h4>CSS</h4>
+                            <p>الشكل – الألوان – ترتيب الصفحة</p>
+                        </div>
+                        <div class="arrow">↓</div>
+                        <div class="road-step highlight">
+                            <span>04</span>
+                            <h4>JavaScript Basics</h4>
+                            <p>تفكير برمجي – تفاعل – منطق</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المرحلة الثانية: اختيار المسار -->
+                <div class="roadmap-block">
+                    <h3 class="block-title">🔵 المرحلة الثانية: اختيار المسار</h3>
+                    <div class="paths">
+                        <div class="path js">
+                            <h4>مسار JavaScript</h4>
+                            <ul>
+                                <li>JavaScript Advanced</li>
+                                <li>React / Front-End Framework</li>
+                                <li>Node.js</li>
+                            </ul>
+                            <span class="job">وظائف: Front-End / Full Stack JS</span>
+                        </div>
+
+                        <div class="path python">
+                            <h4>مسار Python</h4>
+                            <ul>
+                                <li>Python</li>
+                                <li>Django / Flask</li>
+                            </ul>
+                            <span class="job">وظائف: Back-End Developer</span>
+                        </div>
+
+                        <div class="path php">
+                            <h4>مسار PHP</h4>
+                            <ul>
+                                <li>PHP</li>
+                                <li>Laravel</li>
+                            </ul>
+                            <span class="job">وظائف: Back-End / Full Stack PHP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- قواعد البيانات -->
+                <div class="roadmap-block">
+                    <h3 class="block-title">🟣 قواعد البيانات (مع أي مسار)</h3>
+                    <div class="db-box">
+                        <div>
+                            <strong>SQL</strong>
+                            <p>MySQL – PostgreSQL</p>
+                        </div>
+                        <div>
+                            <strong>NoSQL</strong>
+                            <p>MongoDB</p>
+                        </div>
+                    </div>
+                    <p class="db-note">
+                        أي موقع حقيقي = بيانات<br>
+                        مستخدمين – منتجات – محتوى
+                    </p>
+                </div>
+
+                <!-- المرحلة الأخيرة: التنفيذ -->
+                <div class="roadmap-block final">
+                    <h3>🚀 المرحلة الأخيرة: التنفيذ</h3>
+                    <p>
+                        مشاريع – مواقع – أفكار – براندات<br>
+                        بدون وهم… شغل حقيقي
+                    </p>
+                </div>
+            </section>
+
+        </section>
+        <!-- HTML لكل صفحة -->
+        <div id="tasksContainer" data-tasks='[
+        {"number":"01","text":"استعد للخطوة القادمة جهز الحاسوب"},
+        {"number":"02","text":"سجل حساب فى متصفح كروم و محرك البحث جوجل"},
+        {"number":"03","text":"قم بشرح هذا اللينك https://www.google.com"},
+        {"number":"04","text":"ماذا عن هدفك أو دافعك لدخول عالم المبرمجين !؟"}
+     ]'>
+        </div>
+    </main>
+    <footer id="footer"></footer>
+    <script src="../script/lectures.js"></script>
+</body>
+
+</html>

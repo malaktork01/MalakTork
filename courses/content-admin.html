@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>إدارة المحاضرات | Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/admin.css"> </head>
+<body>
+
+    <div id="login-screen" class="admin-panel" style="max-width: 450px; margin: 50px auto; text-align: center;">
+        <i class="fas fa-user-shield" style="font-size: 50px; color: var(--primary); margin-bottom: 20px;"></i>
+        <h2>Admin Access</h2>
+        <input type="password" id="admin-pass" placeholder="Password Key" style="text-align: center;">
+        <button class="btn-publish" onclick="login()" style="margin-top: 20px;">Open Dashboard</button>
+    </div>
+
+    <div id="main-panel" class="admin-panel" style="display: none;">
+        <div class="panel-header">
+            <h2>Course Manager</h2>
+            <p>إدارة محاضرات المسارات التعليمية</p>
+        </div>
+
+        <div class="form-container">
+            <h3 id="form-title" style="color: var(--primary); margin-bottom: 20px;"><i class="fas fa-plus-circle"></i> إضافة محاضرة للمسار</h3>
+            
+            <input type="hidden" id="edit-index" value="-1">
+
+            <div class="form-group">
+                <div>
+                    <label><i class="fas fa-folder"></i> اختيار المسار</label>
+                    <select id="c-subject" onchange="renderManaged()">
+                        <option value="html">HTML Academy 🌐</option>
+                        <option value="css">CSS Design 🎨</option>
+                        <option value="js">JavaScript Logic ⚡</option>
+                    </select>
+                </div>
+                <div>
+                    <label>عنوان المحاضرة</label>
+                    <input type="text" id="c-title" placeholder="استكشاف الإنترنت والمواقع">
+                </div>
+            </div>
+
+            <div class="form-group" style="grid-template-columns: 2fr 1fr;">
+                <div>
+                    <label>المحاور (كل محور في سطر)</label>
+                    <textarea id="c-goals" rows="4" placeholder="مقدمة عن..."></textarea>
+                </div>
+                <div>
+                    <label>حالة الزر</label>
+                    <select id="c-status">
+                        <option value="start">ابدأ التعلّم</option>
+                        <option value="soon">قريباً</option>
+                    </select>
+                    <label style="margin-top: 10px;">رابط المحاضرة</label>
+                    <input type="text" id="c-link" placeholder="lect1.html">
+                </div>
+            </div>
+
+            <div class="form-group" style="grid-template-columns: 1fr 1fr 1fr;">
+                <input type="text" id="c-time" placeholder="⏱ 10 دقائق">
+                <input type="text" id="c-topics" placeholder="📌 5 محاور">
+                <input type="text" id="c-task" placeholder="📝 تكليف واحد">
+            </div>
+
+            <button id="submit-btn" class="btn-publish" onclick="handleSave()">
+                <i class="fas fa-cloud-upload-alt"></i> نشر المحاضرة الآن
+            </button>
+        </div>
+
+        <div class="video-list">
+            <h3 style="margin-bottom: 20px;"><i class="fas fa-list-ul"></i> المحاضرات المضافة</h3>
+            <div id="managed-list"></div>
+        </div>
+    </div>
+
+    <script>
+        const passKey = "Malak2026";
+
+        function login() {
+            if (document.getElementById('admin-pass').value === passKey) {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('main-panel').style.display = 'block';
+                renderManaged();
+            } else { alert("رمز الدخول غير صحيح!"); }
+        }
+
+        function handleSave() {
+            const subject = document.getElementById('c-subject').value;
+            const index = parseInt(document.getElementById('edit-index').value);
+            
+            const data = {
+                title: document.getElementById('c-title').value,
+                link: document.getElementById('c-status').value === 'soon' ? '#' : document.getElementById('c-link').value,
+                goals: document.getElementById('c-goals').value.split('\n').filter(g => g.trim()),
+                time: document.getElementById('c-time').value,
+                topics: document.getElementById('c-topics').value,
+                task: document.getElementById('c-task').value,
+                status: document.getElementById('c-status').value,
+                img: `../../img/${subject}.png`
+            };
+
+            if(!data.title || data.goals.length === 0) return alert("أكملي البيانات!");
+
+            let list = JSON.parse(localStorage.getItem(`courses_${subject}`)) || [];
+            if(index === -1) list.push(data);
+            else list[index] = data;
+
+            localStorage.setItem(`courses_${subject}`, JSON.stringify(list));
+            resetForm();
+            renderManaged();
+        }
+
+        function renderManaged() {
+            const subject = document.getElementById('c-subject').value;
+            const container = document.getElementById('managed-list');
+            const list = JSON.parse(localStorage.getItem(`courses_${subject}`)) || [];
+
+            container.innerHTML = list.length ? '' : '<p style="text-align:center; opacity:0.5;">لا يوجد محاضرات مضافة هنا بعد.</p>';
+
+            list.forEach((c, i) => {
+                container.innerHTML += `
+                    <div class="manage-item">
+                        <div style="display:flex; align-items:center; gap:15px;">
+                            <img src="${c.img}" style="width:45px; border-radius:10px;">
+                            <div>
+                                <h4 style="margin:0; font-size:15px;">${c.title}</h4>
+                                <small style="color:var(--primary)">${c.time} | ${c.status === 'soon' ? 'مغلق' : 'متاح'}</small>
+                            </div>
+                        </div>
+                        <div class="action-btns">
+                            <button class="icon-btn edit-btn" onclick="prepareEdit(${i})"><i class="fas fa-pen-nib"></i></button>
+                            <button class="icon-btn delete-btn" onclick="deleteItem(${i})"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function prepareEdit(i) {
+            const subject = document.getElementById('c-subject').value;
+            const list = JSON.parse(localStorage.getItem(`courses_${subject}`));
+            const c = list[i];
+
+            document.getElementById('c-title').value = c.title;
+            document.getElementById('c-goals').value = c.goals.join('\n');
+            document.getElementById('c-link').value = c.link === '#' ? '' : c.link;
+            document.getElementById('c-time').value = c.time;
+            document.getElementById('c-topics').value = c.topics;
+            document.getElementById('c-task').value = c.task;
+            document.getElementById('c-status').value = c.status;
+            document.getElementById('edit-index').value = i;
+            document.getElementById('submit-btn').innerHTML = "تحديث المحاضرة";
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function deleteItem(i) {
+            if(confirm("حذف؟")) {
+                const subject = document.getElementById('c-subject').value;
+                let list = JSON.parse(localStorage.getItem(`courses_${subject}`));
+                list.splice(i, 1);
+                localStorage.setItem(`courses_${subject}`, JSON.stringify(list));
+                renderManaged();
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('c-title').value = '';
+            document.getElementById('c-goals').value = '';
+            document.getElementById('edit-index').value = '-1';
+            document.getElementById('submit-btn').innerHTML = "نشر المحاضرة الآن";
+        }
+    </script>
+</body>
+</html>

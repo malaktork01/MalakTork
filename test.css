@@ -1,0 +1,77 @@
+/* =================================================
+   5. شبكة الفيديوهات (Grid & Cards) - التعديل هنا
+   ================================================= */
+.reels-grid {
+    display: grid;
+    /* تحديد عرض ثابت للكارت في الكمبيوتر عشان ميكبرش بزيادة ويتمط */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 320px)); 
+    gap: 30px;
+    padding: 60px 8%;
+    justify-content: center; /* توسيط الفيديوهات في نص الشاشة */
+}
+
+.video-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    border: 1px solid var(--glass-border);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+}
+
+.video-card:hover {
+    transform: translateY(-12px);
+    border-color: var(--color-primary);
+    box-shadow: 0 15px 35px rgba(0, 191, 166, 0.2);
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16; 
+    background: #000; /* خلفية سوداء لو الفيديو أبعاده مختلفة */
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    /* تم تغيير cover إلى contain لمنع أكل أطراف الفيديو */
+    object-fit: contain; 
+    display: block;
+    background: #000;
+}
+
+video.loaded { opacity: 1; }
+
+/* مؤشر التحميل */
+.video-loader {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid var(--color-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 2;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.card-info {
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.card-info h3 {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 700;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reels | Access</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body oncontextmenu="return false;">
+    <div class="bg"></div>
+    <div id="lock-screen" style="position: fixed; inset: 0; background: radial-gradient(circle at center, #0d1217 0%, #080a0c 100%); z-index: 99999; display: flex; align-items: center; justify-content: center;">
+        <div style="background: rgba(255, 255, 255, 0.02); padding: 50px 40px; border-radius: 35px; border: 1px solid rgba(255, 255, 255, 0.08); text-align: center; backdrop-filter: blur(25px); width: 90%; max-width: 400px;">
+            <div style="width: 80px; height: 80px; background: rgba(0, 191, 166, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; border: 1px solid rgba(0, 191, 166, 0.2);"><i class="fas fa-fingerprint" style="color: #00bfa6; font-size: 35px;"></i></div>
+            <h2 style="color: #fff; font-family: 'Cairo'; margin-bottom: 10px;">Private Access</h2>
+            <p style="color: #666; font-family: 'Cairo'; font-size: 14px; margin-bottom: 30px;">برجاء إدخال كود التحقق الخاص بمادة الأكسس</p>
+            <input type="password" id="user-code" placeholder="Access Code" style="width: 100%; padding: 16px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: #fff; text-align: center; outline: none; margin-bottom: 20px;">
+            <button onclick="unlock()" style="width: 100%; padding: 16px; border-radius: 15px; border: none; background: linear-gradient(90deg, #00bfa6, #2f6db3); color: #fff; cursor: pointer; font-weight: bold; font-family: 'Cairo';">تحقق ودخول</button>
+        </div>
+    </div>
+    <main id="protected-content" style="display: none;">
+        <header><div class="container"><div class="header-content"><div class="logo-area"><a href="../index.html"><h1>MalakTork</h1></a></div></div></div></header>
+        <section class="academy-hero" style="text-align: center; padding: 70px 70px;"><h2 id="page-title" class="special-heading">Access Reels</h2></section>
+        <div class="container"><div id="reels-grid" class="reels-grid"></div></div>
+    </main>
+    <script>
+        const currentCategory = 'access'; // تعريف هوية المادة
+        function unlock() {
+            const userInput = document.getElementById('user-code').value;
+            const savedKey = localStorage.getItem(`code_${currentCategory}`) || "Malak2026";
+            if (userInput === savedKey) {
+                document.getElementById('lock-screen').remove();
+                document.getElementById('protected-content').style.display = 'block';
+                if (typeof renderVideos === "function") renderVideos();
+            } else { alert("كود مادة الأكسس غير صحيح!"); }
+        }
+        document.getElementById('user-code').addEventListener('keypress', (e) => { if (e.key === 'Enter') unlock(); });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

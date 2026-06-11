@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Malak Tork Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/admin.css">
+
+</head>
+
+<body>
+
+    <div id="login-screen" class="admin-panel">
+        <div class="lock-icon"><i class="fas fa-user-shield"></i></div>
+        <h2>Admin Access</h2>
+        <input type="password" id="admin-pass" placeholder="Password Key">
+        <button class="btn btn-add" onclick="login()" style="margin-top: 25px;">Open Academy</button>
+    </div>
+
+    <div id="main-panel" class="admin-panel" style="display: none;">
+        <div class="panel-header">
+            <h2>Academy Manager</h2>
+            <p>MALAK TORK | CONTENT MANAGEMENT</p>
+            <a href="../index.html" class="view-site-btn"><i class="fas fa-external-link-alt"></i> WebSite</a>
+        </div>
+
+        <div class="form-container" style="border-color: var(--primary);">
+            <h3 style="margin: 0 0 20px 0; font-size: 18px; color: var(--primary);"><i class="fas fa-key"></i> إدارة
+                أكواد دخول المواد</h3>
+            <table class="codes-table">
+                <thead>
+                    <tr>
+                        <th>المادة</th>
+                        <th>الكود الحالي</th>
+                        <th>كود جديد</th>
+                        <th>حفظ</th>
+                    </tr>
+                </thead>
+                <tbody id="codes-table-body">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="form-container">
+            <h3 style="margin: 0 0 20px 0; font-size: 18px;"><i class="fas fa-plus-circle"></i> إضافة / تعديل درس</h3>
+            <div class="form-group">
+                <input type="hidden" id="edit-index" value="-1">
+                <div class="input-group">
+                    <label><i class="fas fa-layer-group"></i> اختيار القسم</label>
+                    <select id="v-category" class="main-input">
+                        <option value="network">Network Academy 🌐</option>
+                        <option value="android">Android Development 📱</option>
+                        <option value="wordpress">WordPress Design 🎨</option>
+                        <option value="access">Access Database 📊</option>
+                        <option value="scratch">Scratch Junior 🐱</option>
+                    </select>
+                </div>
+                <div class="full-width">
+                    <label>عنوان الدرس</label>
+                    <input type="text" id="v-title" placeholder="عنوان الفيديو">
+                </div>
+                <div>
+                    <label>رابط الفيديو</label>
+                    <input type="text" id="v-url" placeholder="Cloudinary Link">
+                </div>
+                <div>
+                    <label>صورة الغلاف</label>
+                    <input type="text" id="v-poster" placeholder="Image Link (Optional)">
+                </div>
+            </div>
+            <button id="save-btn" class="btn btn-add" onclick="saveVideo()">
+                <i class="fas fa-cloud-upload-alt"></i> نشر الدرس الآن
+            </button>
+        </div>
+
+        <div class="video-list">
+            <div class="list-title"><i class="fas fa-list-ul"></i> الدروس المنشورة</div>
+            <div id="video-list-container"></div>
+        </div>
+    </div>
+
+    <script>
+        const passKey = "Malak2026";
+        const categories = ['network', 'android', 'wordpress', 'access', 'scratch'];
+        let videos = JSON.parse(localStorage.getItem('myAcademyVideos')) || [];
+
+        function login() {
+            if (document.getElementById('admin-pass').value === passKey) {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('main-panel').style.display = 'block';
+                renderVideos();
+                renderCodes();
+            } else { alert("رمز الدخول غير صحيح!"); }
+        }
+
+        // --- إدارة الأكواد ---
+        function renderCodes() {
+            const tbody = document.getElementById('codes-table-body');
+            tbody.innerHTML = '';
+            categories.forEach(cat => {
+                const currentCode = localStorage.getItem(`code_${cat}`) || "Malak2026";
+                tbody.innerHTML += `
+                    <tr>
+                        <td style="text-transform: capitalize;">${cat}</td>
+                        <td style="color: var(--primary); font-weight: bold;">${currentCode}</td>
+                        <td><input type="text" id="new-code-${cat}" class="small-input" placeholder="جديد"></td>
+                        <td><button class="btn-save-sm" onclick="saveCode('${cat}')">حفظ</button></td>
+                    </tr>
+                `;
+            });
+        }
+
+        function saveCode(cat) {
+            const newCode = document.getElementById(`new-code-${cat}`).value;
+            if (!newCode) return alert("اكتبي الكود أولاً!");
+            localStorage.setItem(`code_${cat}`, newCode);
+            alert(`تم تحديث كود ${cat} بنجاح!`);
+            renderCodes();
+        }
+
+        // --- إدارة الفيديوهات ---
+        function renderVideos() {
+            const list = document.getElementById('video-list-container');
+            list.innerHTML = videos.length ? '' : '<p style="text-align:center; color:#555;">لا يوجد دروس حالياً</p>';
+            videos.forEach((video, index) => {
+                list.innerHTML += `
+                    <div class="video-item">
+                        <div class="info">
+                            <span class="tag">${video.category}</span>
+                            <h4>${video.title}</h4>
+                        </div>
+                        <div class="actions" style="display:flex; gap:10px;">
+                            <button class="btn-save-sm" style="background:rgba(255,255,255,0.1); color:#fff;" onclick="editVideo(${index})">تعديل</button>
+                            <button class="btn-save-sm" style="background:rgba(255,68,68,0.2); color:#ff4444;" onclick="deleteVideo(${index})">حذف</button>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function saveVideo() {
+            const category = document.getElementById('v-category').value;
+            const title = document.getElementById('v-title').value;
+            const url = document.getElementById('v-url').value;
+            const poster = document.getElementById('v-poster').value;
+            const editIndex = parseInt(document.getElementById('edit-index').value);
+
+            if (!title || !url) return alert("أكملي البيانات!");
+
+            const videoData = { category, title, url, poster };
+            if (editIndex === -1) videos.push(videoData);
+            else {
+                videos[editIndex] = videoData;
+                document.getElementById('edit-index').value = "-1";
+                document.getElementById('save-btn').innerHTML = '<i class="fas fa-cloud-upload-alt"></i> نشر الدرس الآن';
+            }
+
+            localStorage.setItem('myAcademyVideos', JSON.stringify(videos));
+            renderVideos();
+            clearForm();
+        }
+
+        function editVideo(index) {
+            const v = videos[index];
+            document.getElementById('v-category').value = v.category;
+            document.getElementById('v-title').value = v.title;
+            document.getElementById('v-url').value = v.url;
+            document.getElementById('v-poster').value = v.poster || '';
+            document.getElementById('edit-index').value = index;
+            document.getElementById('save-btn').innerHTML = 'تحديث البيانات';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function deleteVideo(index) {
+            if (confirm("حذف الدرس؟")) {
+                videos.splice(index, 1);
+                localStorage.setItem('myAcademyVideos', JSON.stringify(videos));
+                renderVideos();
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('v-title').value = '';
+            document.getElementById('v-url').value = '';
+            document.getElementById('v-poster').value = '';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Editor | Malak Tork</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/editor.css">
+
+</head>
+
+<body>
+    <header class="editor-header">
+        <div class="logo-area">
+            <a href="../../index.html" style="text-decoration: none;">
+                <h1>MalakTork</h1>
+            </a>
+        </div>
+        <div class="action-buttons">
+            <button class="btn btn-run" onclick="runCode()">
+                <i class="fa-solid fa-bolt"></i> <span>تشغيل</span>
+            </button>
+            <input type="file" id="fileInp" hidden onchange="handleFileUpload(event)">
+            <button class="btn btn-upload" onclick="document.getElementById('fileInp').click()" title="رفع ملف أو صورة">
+                <i class="fa-solid fa-image"></i>
+            </button>
+        </div>
+
+        <div class="tabs" id="tabs-container">
+            <button class="tab active" onclick="switchFile('index.html', this)">INDEX.HTML</button>
+            <button class="tab" onclick="switchFile('style.css', this)">STYLE.CSS</button>
+            <button class="tab" onclick="switchFile('script.js', this)">SCRIPT.JS</button>
+        </div>
+    </header>
+
+    <main class="workspace">
+        <div id="editor-container">
+            <div id="editor"></div>
+        </div>
+        <div id="preview-container">
+            <iframe id="preview"></iframe>
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.11.2/ace.js"></script>
+    <script src="../script/editor-logic.js"></script>
+</body>
+
+</html>

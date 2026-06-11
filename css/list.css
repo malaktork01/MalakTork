@@ -1,0 +1,299 @@
+/* ===============================
+    Courses Page – MindCode
+    Arabic RTL Design - updated Modern Tech Styling
+================================ */
+
+:root {
+  /* ألوان الكارت الجديدة لتعطي عمقاً (Shadows & Borders) */
+  --bg-card: rgba(255, 255, 255, 0.03); /* شفافية أقل لدمج أفضل */
+  --border-card: rgba(255, 255, 255, 0.06); /* إطار خافت جداً */
+  
+  /* باليت الألوان المحدثة (أكثر حيوية وتشبعاً) */
+  --primary: #3FAF8E; /* اللون الأخضر الأساسي */
+  --secondary: #2F6DB3; /* اللون الأزرق الأساسي */
+  
+  /* التدرجات اللونية الحديثة (gradients) للزر والعناوين */
+  --gradient-tech: linear-gradient(135deg, #00bfa5 0%, #00829d 100%); /* أخضر فيروزي إلى أزرق عميق */
+  --gradient-hover: linear-gradient(135deg, #00d4ff 0%, #00bfa5 100%); /* أزرق فاتح إلى أخضر عند الهوفر */
+
+  --text-main: #ffffff;
+  --text-muted: #cbd5e1; /* تباين أفضل قليلًا */
+}
+
+body {
+  direction: rtl;
+  font-family: "Cairo", sans-serif;
+  color: var(--text-main);
+  background-color: #0b0f10; /* تأكدي من توافق لون الخلفية */
+}
+
+/* ================= PAGE INTRO ================= */
+.page-intro {
+  text-align: center;
+  padding: 100px 20px 70px; /* مسافة أوسع قليلًا */
+}
+
+.page-intro h1 {
+  font-size: 48px; /* تكبير بسيط */
+  margin-bottom: 15px;
+  background: var(--gradient-tech); /* تطبيق التدرج الجديد على العنوان */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+}
+
+.page-intro p {
+  font-size: 20px;
+  color: var(--text-muted);
+}
+
+/* ================= COURSES CONTAINER ================= */
+.courses {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 30px; /* مسافة أوسع قليلاً للفخامة */
+  margin-bottom: 120px;
+  padding: 0 20px;
+}
+
+/* ================= MODERN COURSE CARD (MODIFIED) ================= */
+.hero-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 20px; /* زوايا أنعم قليلًا */
+  backdrop-filter: blur(20px); /* تأثير زجاجي أقوى */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* حركة أنعم (bounce خفيف) */
+  text-align: center;
+  position: relative;
+  overflow: hidden; /* لحماية الزوايا من أي تأثير */
+}
+
+/* تأثير الإضاءة الخفية (Background Glow) عند الهوفر */
+.hero-box::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, rgba(0, 191, 166, 0.15) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  filter: blur(15px);
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.hero-box:hover {
+  transform: translateY(-10px) scale(1.02); /* رفع وتكبير بسيط */
+  border-color: rgba(63, 175, 142, 0.3);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35); /* ظل أعمق */
+}
+
+.hero-box:hover::before {
+  width: 150px;
+  height: 150px;
+  opacity: 1;
+}
+
+/* ================= IMAGE ================= */
+.hero-box .img {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-box img {
+  width: 100%;
+  filter: drop-shadow(0 0 10px rgba(63, 175, 142, 0.25)); /* تأثير drop-shadow خافت */
+  transition: transform 0.3s ease;
+}
+
+.hero-box:hover img {
+  transform: scale(1.1); /* تكبير الأيقونة عند الهوفر */
+}
+
+/* ================= DETAILS ================= */
+.hero-box .det {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-box h4 {
+  font-size: 24px;
+  margin-bottom: 12px;
+  background: var(--gradient-tech); /* تطبيق التدرج الجديد على عنوان الكارت */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ================= GOALS (Updated Styling) ================= */
+.goals {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+  text-align: right;
+  border-top: 1px solid rgba(255, 255, 255, 0.04); /* خط فاصل خافت جداً */
+  padding-top: 15px;
+}
+
+.goals li {
+  display: flex;
+  align-items: center; /* توسيط Checkbox مع النص */
+  gap: 10px;
+  font-size: 14.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* تخصيص شكل الـ Checkbox ليكون متناسقاً */
+.goals input[type="checkbox"] {
+  accent-color: #00bfa5; /* استخدام لون تشبع التدرج الجديد */
+  transform: scale(1.05);
+  margin-top: 2px;
+}
+
+/* ================= MODERN ACTION BUTTON (MODIFIED) ================= */
+.hero-box .action {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-box button {
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px; /* زوايا متناسقة مع الكارت */
+  background: var(--gradient-tech); /* تطبيق التدرج الجديد على الزر */
+  border: none;
+  color: #fff;
+  font-family: "Cairo", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 191, 166, 0.2); /* ظل ناعم للزر */
+}
+
+/* تأثير "اللمسة الضوئية" (Light Sweep) عند الهوفر */
+.hero-box button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: 0.6s ease-in-out;
+}
+
+.hero-box button:hover {
+  background: var(--gradient-hover); /* تغيير التدرج عند الهوفر */
+  transform: translateY(-2px); /* رفع بسيط للزر */
+  box-shadow: 0 10px 20px rgba(0, 191, 166, 0.4); /* ظل أقوى */
+}
+
+.hero-box button:hover::before {
+  left: 100%; /* تحريك اللمسة الضوئية */
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* شاشات التابلت: كرتين في الصف */
+@media (max-width: 1100px) {
+  .courses {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+/* شاشات الموبايل: كرت واحد في الصف */
+@media (max-width: 768px) {
+  .courses {
+    grid-template-columns: 1fr;
+    padding: 0 15px;
+  }
+  
+  .hero-box {
+    padding: 25px;
+  }
+  
+  .page-intro h1 {
+    font-size: 36px;
+  }
+}
+/* =================================================
+   FIXED LOGO STYLING (MalakTork)
+================================================= */
+.fixed-logo-container {
+    position: fixed; /* ثابت عند التمرير */
+    top: 20px;
+    right: 40px; /* مكانه جهة اليمين لأن الصفحة RTL */
+    z-index: 1000; /* ليكون فوق كل العناصر */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    padding: 10px 25px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+}
+
+.fixed-logo-container:hover {
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateY(-2px);
+    border-color: rgba(0, 191, 166, 0.3);
+}
+
+.logo-link {
+    text-decoration: none;
+}
+
+.main-logo {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 0;
+    font-style: italic;
+    letter-spacing: -1px;
+    /* تطبيق التدرج اللوني الفيروزي المحترف */
+    background: linear-gradient(135deg, #00bfa5 0%, #00829d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.main-logo span {
+    /* تمييز جزء "Tork" بلون مختلف قليلاً أو توهج */
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
+    opacity: 0.9;
+}
+
+/* تحسين الظهور في الموبايل */
+@media (max-width: 768px) {
+    .fixed-logo-container {
+        top: 15px;
+        right: 50%;
+        transform: translateX(50%); /* يتوسط الشاشة في الموبايل */
+        padding: 8px 20px;
+    }
+    
+    .main-logo {
+        font-size: 20px;
+    }
+}

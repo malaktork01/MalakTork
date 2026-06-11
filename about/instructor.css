@@ -1,0 +1,235 @@
+:root {
+    --bg-dark: #0f171e; 
+    --card-bg: rgba(255, 255, 255, 0.02); 
+    --card-border: rgba(255, 255, 255, 0.08);
+    --accent-cyan: #14b8a6; 
+    --accent-glow: rgba(20, 184, 166, 0.2);
+    --text-main: #e2e8f0;
+    --text-muted: #94a3b8;
+    --font-family: 'Cairo', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.8;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* --- الهيدر الذكي --- */
+.main-header {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92%;
+    max-width: 1200px;
+    z-index: 1000;
+    background: rgba(15, 23, 30, 0.5);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--card-border);
+    border-radius: 50px;
+    padding: 10px 25px;
+}
+
+.header-nav { display: flex; justify-content: space-between; align-items: center; }
+.brand-name { font-size: 1.1rem; font-weight: 700; color: var(--accent-cyan); }
+.nav-home-btn { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.85rem; padding: 7px 18px; border-radius: 50px; }
+
+/* --- قسم التعريف الرئيسي --- */
+.about-hero { padding: 150px 0 60px 0; position: relative; }
+.hero-wrapper { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+.hero-content { order: 2; text-align: center; }
+.hero-content h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 900; color: #ffffff; }
+.subtitle { color: var(--accent-cyan); font-weight: 600; margin-bottom: 20px; }
+.description { color: var(--text-muted); margin: 0 auto 30px auto; max-width: 600px; text-align: justify; }
+
+/* تأثير الـ Fade In اللطيف لعناصر الواجهة عند تحميل الصفحة فوراً */
+.hero-content h1, .subtitle, .description, .stats-grid {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; max-width: 450px; margin: 0 auto; }
+.stat-item { 
+    background: var(--card-bg); 
+    padding: 15px; 
+    border-radius: 16px; 
+    border: 1px solid var(--card-border);
+    transition: all 0.4s ease;
+}
+/* حركة تفاعلية للكروت الإحصائية */
+.stat-item:hover {
+    border-color: var(--accent-cyan);
+    background: rgba(20, 184, 166, 0.03);
+    transform: translateY(-5px);
+}
+.stat-number { display: block; font-size: 1.9rem; font-weight: 700; color: var(--accent-cyan); }
+
+/* طبقة الأوفرلاي وتأثير الـ Glow اللامع على الصورة الشخصية */
+.hero-image-box { 
+    justify-self: center; 
+    order: 1; 
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    max-width: 320px;
+    width: 100%;
+    border: 1px solid var(--card-border);
+    padding: 10px;
+    box-shadow: 0 0 0 var(--accent-glow);
+    transition: all 0.5s ease;
+    animation: fadeInUp 1s ease forwards;
+}
+.hero-image-box:hover {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 10px 40px var(--accent-glow);
+    transform: scale(1.02);
+}
+.hero-image-box::after {
+    content: '';
+    position: absolute;
+    top: 10px; left: 10px; right: 10px; bottom: 10px;
+    background: linear-gradient(to bottom, rgba(15, 23, 30, 0.25), rgba(20, 184, 166, 0.15));
+    border-radius: 14px;
+    pointer-events: none;
+    z-index: 2;
+}
+.hero-image-box img { 
+    width: 100%; 
+    display: block;
+    border-radius: 14px; 
+}
+
+@media (min-width: 968px) {
+    .hero-wrapper { grid-template-columns: 1.1fr 0.9fr; gap: 80px; }
+    .hero-content { order: 1; text-align: right; }
+    .hero-image-box { order: 2; justify-self: left; }
+    .description { margin: 0 0 35px auto; }
+    .stats-grid { margin: 0 0 0 auto; }
+}
+
+/* --- قسم الفيديوهات بحركته الجديدة --- */
+.video-section {
+    padding: 80px 0;
+    background: rgba(255, 255, 255, 0.01);
+}
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.video-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    opacity: 1; /* ظاهرة بشكل دائم الآن */
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* حركة صعود حيوية وجميلة عند مرور الماوس على كرت الفيديو */
+.video-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(20, 184, 166, 0.4);
+    box-shadow: 0 15px 35px rgba(20, 184, 166, 0.1);
+}
+.video-wrapper-inner {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #000;
+}
+.video-wrapper-inner video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.video-info {
+    padding: 15px 20px;
+    border-top: 1px solid var(--card-border);
+}
+.video-info h3 {
+    font-size: 1rem;
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+/* --- قسم معرض الصور الحركي الحيوى --- */
+.students-gallery { padding: 80px 0; border-top: 1px solid rgba(255, 255, 255, 0.03); }
+.section-header { text-align: center; margin-bottom: 50px; }
+.section-header h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: #ffffff; }
+
+.luxury-gallery-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; }
+.gallery-card {
+    background: var(--card-bg); 
+    border-radius: 20px; 
+    overflow: hidden;
+    flex: 1 1 calc(33.333% - 25px); 
+    min-width: 290px; 
+    max-width: 380px; 
+    aspect-ratio: 1 / 1; 
+    border: 1px solid var(--card-border);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    opacity: 1; /* ظاهرة بشكل دائم الآن */
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* حركة صعود ممتعة لمعرض التدريب الميداني */
+.gallery-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--accent-cyan);
+}
+.gallery-card img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    filter: grayscale(30%) brightness(85%); 
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+.gallery-card:hover img { 
+    filter: grayscale(0%) brightness(100%); 
+}
+
+/* أنيميشن التحميل النظيف للموقع */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}/* --- الفوتر البسيط --- */
+.main-footer {
+    padding: 30px 0;
+    margin-top: 40px;
+    background: rgba(15, 23, 30, 0.8); /* نفس درجة لون الموقع المظلمة */
+    border-top: 1px solid var(--card-border); /* خط علوي خفيف جداً */
+    text-align: center;
+}
+
+.main-footer p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}

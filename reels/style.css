@@ -1,0 +1,213 @@
+/* استدعاء الخطوط المطلوبة */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap');
+
+/* =================================================
+   1. المتغيرات (Variables)
+   ================================================= */
+:root {
+    --color-primary: #00bfa6;      /* الأخضر التركوازي من الرئيسية */
+    --color-secondary: #2f6db3;    /* الأزرق من الرئيسية */
+    --color-accent: #61bebf;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --font-heading: 'Playfair Display', serif;
+    --font-arabic: 'Cairo', sans-serif;
+}
+
+/* =================================================
+   2. الإعدادات العامة (General)
+   ================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #080a0c;
+    color: #fff;
+    font-family: var(--font-arabic);
+    overflow-x: hidden;
+}
+
+/* =================================================
+   3. الهيدر واللوجو (Matching Main Page)
+   ================================================= */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    padding: 12px 35px;
+    border-radius: 50px;
+    border: 1px solid var(--glass-border);
+    position: fixed;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+    min-width: 300px;
+    z-index: 1000;
+}
+
+.logo-area h1 {
+    font-family: var(--font-heading) !important;
+    font-size: 28px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary)) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-style: italic !important; /* ميل اللوجو مثل الرئيسية */
+    text-transform: none !important; /* يمنع الحروف الكبيرة الإجبارية */
+    filter: drop-shadow(0 0 5px rgba(0, 191, 166, 0.2));
+}
+
+/* =================================================
+   4. قسم العنوان (Hero Section)
+   ================================================= */
+.academy-container {
+    padding-top: 180px;
+    text-align: center;
+}
+
+.special-heading {
+    font-family: var(--font-heading) !important;
+    font-weight: 700 !important;
+    color: rgba(165, 209, 189, 0.15) !important;
+    font-size: clamp(50px, 8vw, 100px); /* حجم مرن للموبايل */
+    text-transform: none !important; /* يترك الحروف كما تكتبيها */
+    letter-spacing: -1px !important;
+    margin-top: -60px;
+}
+
+.academy-hero p {
+    font-family: var(--font-arabic) !important;
+    font-size: 20px;
+    color: #d4e5e7;
+    margin-top: -20px;
+}
+
+/* =================================================
+   5. شبكة الفيديوهات (Grid & Cards) - التعديل هنا
+   ================================================= */
+.reels-grid {
+    display: grid;
+    /* تحديد عرض ثابت للكارت في الكمبيوتر عشان ميكبرش بزيادة ويتمط */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 320px)); 
+    gap: 30px;
+    padding: 60px 8%;
+    justify-content: center; /* توسيط الفيديوهات في نص الشاشة */
+}
+
+.video-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    border: 1px solid var(--glass-border);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+}
+
+.video-card:hover {
+    transform: translateY(-12px);
+    border-color: var(--color-primary);
+    box-shadow: 0 15px 35px rgba(0, 191, 166, 0.2);
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16; 
+    background: #000; /* خلفية سوداء لو الفيديو أبعاده مختلفة */
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    /* تم تغيير cover إلى contain لمنع أكل أطراف الفيديو */
+    object-fit: contain; 
+    display: block;
+    background: #000;
+}
+
+video.loaded { opacity: 1; }
+
+/* مؤشر التحميل */
+.video-loader {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid var(--color-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 2;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.card-info {
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.card-info h3 {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 700;
+}
+
+
+/* =================================================
+   6. التوافق مع الشاشات (Responsive) - تم الحفاظ على إعداداتك
+   ================================================= */
+
+/* للتابلت */
+@media (max-width: 992px) {
+    .reels-grid { padding: 40px 5%; gap: 20px; }
+    .header-content { width: 80%; }
+}
+
+/* للموبايل - تعديل طفيف جداً للحفاظ على مقاسك */
+@media (max-width: 768px) {
+    .header-content {
+        width: 90%;
+        padding: 10px 20px;
+        top: 15px;
+    }
+    
+    .logo-area h1 { font-size: 22px; }
+
+    .academy-container { padding-top: 140px; }
+    
+    .special-heading {
+        font-size: 55px !important;
+        margin-top: -30px;
+        letter-spacing: 0 !important;
+    }
+
+    .academy-hero p { font-size: 16px; margin-top: 5px; padding: 0 15px; }
+
+    .reels-grid {
+        /* فيديو واحد في السطر للموبايل مع الحفاظ على عرضه */
+        grid-template-columns: minmax(260px, 300px); 
+        padding: 30px 20px;
+    }
+
+    /* حذفنا الـ height الثابت هنا عشان الـ aspect-ratio هو اللي يتحكم */
+    .video-wrapper { width: 100%; aspect-ratio: 9/16; } 
+}
+
+/* للشاشات الصغيرة جداً */
+@media (max-width: 480px) {
+    .special-heading { font-size: 45px !important; }
+}
