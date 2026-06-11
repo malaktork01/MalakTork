@@ -684,5 +684,5 @@ RESPONSIVE
   }
 }
 @media (max-width: 480px) {
-    .special-heading { font-size: 25px !important; }
+    .special-heading { font-size: 40px !important; }
 }
