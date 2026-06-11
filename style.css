@@ -683,3 +683,6 @@ RESPONSIVE
     width: 1170px;
   }
 }
+@media (max-width: 480px) {
+    .special-heading { font-size: 45px !important; }
+}
